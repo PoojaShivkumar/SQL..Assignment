@@ -1,0 +1,405 @@
+problem statement 1
+
+Create a Table 
+* Salesman
+* Customers
+* Orders
+* Nobel_win
+
+create table Salesman
+(
+salesman_id int Primary Key,
+name varchar(20),
+city varchar(50),
+commission float
+)
+
+create table Customers
+(
+customer_id int Primary key,
+cust_name varchar(40),
+city varchar(50),
+grade int,
+salesman_id int FOREIGN KEY REFERENCES Salesman(salesman_id)
+)
+
+create table Orders
+(
+ord_no int,
+purch_amt float,
+ord_date date,
+customer_id int FOREIGN KEY REFERENCES Customers(customer_id),
+salesman_id int FOREIGN KEY REFERENCES Salesman(salesman_id)
+)
+
+create table Nobel_Win
+(
+year int,
+subject varchar(40),
+winner varchar(40),
+country varchar(40),
+category varchar(40)
+)
+
+
+INSERT  THE SALESMAN TABLE VALUES
+
+insert into salesman values(5001 , 'James Hoog','New York ',0.15)
+insert into salesman values(5002 , 'Nail Knite' , 'Paris' , 0.13)
+insert into salesman values(5005 , 'Pit Alex',   ' London', 0.11)
+insert into salesman values(5006 ,'Mc Lyon  ', 'Paris',  0.14)
+insert into salesman values(5007,'Paul Adam'  ,'Rome', 0.13)
+insert into salesman values(5003 ,' Lauson Hen','San Jose',0.12)
+
+RETRIEVE THE SALESMAN VALUES
+select * from Salesman;
+
+5001	James Hoog	New York 	0.15
+5002	Nail Knite	Paris	      0.13
+5003	Lauson Hen	San Jose	0.12
+5005	Pit Alex	London	0.11
+5006	Mc Lyon  	Paris	      0.14
+5007	Paul Adam	Rome	     0.13
+
+
+INSERT  THE CUSTOMERS TABLE VALUES
+
+insert into Customers values(3002  , 'Nick Rimando','New York',100, 5001)
+insert into Customers values(3007 ,'Brad Davis','New York',200, 5001)
+insert into Customers values(3005 ,'Grahan Zusi','California',200, 5002)
+insert into Customers values(3008 , 'Julian Green ','London',300, 5002 )
+insert into Customers values(3004 , 'Fabian Johson','Paris', 300 , 5006)
+insert into Customers values(3009,'Geoff Cameron','Berlin',100,5003)
+
+RETRIEVE THE CUSTOMERS VALUES
+select * from Customers
+
+3002	Nick Rimando	New York	100	5001
+3004	Fabian Johson	Paris	300	5006
+3005	Grahan Zusi	California	200	5002
+3007	Brad Davis	New York	200	5001
+3008	Julian Green 	London	300	5002
+3009	Geoff Cameron	Berlin	100	5003
+
+
+INSERT  THE ORDERS TABLE VALUES
+
+insert into Orders values(70001,150.5,'2012-10-05',3005,5002)
+insert into Orders values(70009,270.65,'2012-09-10',3001,5005)
+insert into Orders values(70002,65.26,'2012-10-05',3002,5001)
+insert into Orders values(70004,110.5,'2012-08-17',3009,5003)
+insert into Orders values(7007,948.5,'2012-09-10',3005,5001)
+insert into Orders values(7005,2400.6,'2012-07-27',3007,5001)
+
+RETRIEVE THE NOBEL_WIN VALUES
+select * from Orders;
+
+70001	150.5	 2012-10-05	3005	5002
+70009 270.65 2012-09-10 3001  5005
+70002	65.26	 2012-10-05	3002	5001
+70004	110.5	 2012-08-17	3009	5003
+7007	948.5	 2012-09-10	3005	5001
+7005	2400.6 2012-07-27	3007	5001
+70001	150.5	 2012-10-05	3005	5002
+
+
+INSERT  THE NOBEL_WIN TABLE VALUES
+
+insert into  Nobel_Win values(1970,'Physics','Hannes Alfven','Sweden','Scientist')
+insert into  Nobel_Win values(1970,'Physics','Louis Neel','France','Scientist')
+insert into  Nobel_Win values(1970,'Chemistry','Luis Federico Leloir','France','Scientist')
+insert into  Nobel_Win values(1970,'Physiology','Ulf von Euler' , 'Sweden','Scientist')
+insert into  Nobel_Win values(1970,'Physiology', 'Bernard Katz','Germany','Scientist')
+insert into  Nobel_Win values(1970,'Literature','Aleksandar Solzhenitsyn','Russia','Lingist')
+insert into  Nobel_Win values(1970,'Economics','Paul Samuelson','USA','Economist')
+insert into  Nobel_Win values(1970,'Physiology','Julius Axelrod','USA','Scientist')
+
+RETRIEVE THE NOBEL_WIN VALUES
+select * from  Nobel_Win;
+
+1970	Physics	Hannes Alfven	Sweden	Scientist
+1970	Physics	Louis Neel	France	Scientist
+1970	Chemistry	Luis Federico Leloir	France	Scientist
+1970	Physiology	Ulf von Euler	Sweden	Scientist
+1970	Physiology	Bernard Katz	Germany	Scientist
+1970	Literature	Aleksandar Solzhenitsyn	Russia	Lingist
+1970	Economics	Paul Samuelson	USA	Economist
+1970	Physiology	Julius Axelrod	USA	Scientist
+
+...................................................................................................................................................
+...................................................................................................................................................
+
+1) Write a SQL statement to display all the information of all salesmen
+ 
+select * from Salesman;
+
+5001	James Hoog	New York 	0.15
+5002	Nail Knite	Paris	0.13
+5003	 Lauson Hen	San Jose	0.12
+5005	Pit Alex	 London	0.11
+5006	Mc Lyon  	Paris	0.14
+5007	Paul Adam	Rome	0.13
+
+......................................................................................................................................................
+......................................................................................................................................................
+
+2) Write a SQL statement to display specific columns like name and commission for all the salesmen
+ 
+select name,commission from Salesman;
+
+.....................................................................................................................................................
+.....................................................................................................................................................
+
+3) Write a query to display the columns in a specific order like order date, salesman id, order number and purchase amount from for all the orders
+
+ select  ord_date, salesman_id, ord_no, purch_amt from orders;
+
+....................................................................................................................................................
+....................................................................................................................................................
+
+4) Write a SQL statement to display names and city of salesman, who belongs to the city of Paris.
+ 
+select name,city from salesman where city='Paris';
+
+......................................................................................................................................................
+......................................................................................................................................................
+
+5) Write a SQL statement to display all the information for those customers with a grade of 200
+
+  select * from Customers where grade=200;
+
+......................................................................................................................................................
+......................................................................................................................................................
+
+6) Write a query to display all customers with a grade above 100. 
+
+  select * from Customers where grade>100;
+
+......................................................................................................................................................
+......................................................................................................................................................
+
+7) Write a SQL statement to display all customers, who are either belongs to the city New York
+
+ select * from Customers where city='New York';
+
+......................................................................................................................................................
+......................................................................................................................................................
+
+8) Write a Sol query to Show all the details (year, subject, winner, country) of the Chemistry
+
+
+ select year, subject, winner, country from Nobel_Win where subject='Chemistry'; 
+
+......................................................................................................................................................
+......................................................................................................................................................
+
+9) Write a Sol query to display the Nobel prizes for 1970
+
+ select * from Nobel_Win where year=1970;
+
+......................................................................................................................................................
+......................................................................................................................................................
+
+10) Write a Sol query to know the winner of the 1971 prize for Literature
+
+ select winner from Nobel_Win where category='Literature';
+
+......................................................................................................................................................
+......................................................................................................................................................
+
+11) Write a SQL query to display the order number followed by order date and the purchase amount for each order which will be delivered by the salesman who is holding the ID 5001 
+
+  select Ord_no, Ord_date, Purch_amt from Orders where Salesman_id='5001';
+
+......................................................................................................................................................
+......................................................................................................................................................
+
+12) Write a SQL statement to display either those orders which are not issued on date 2012-09-10 and issued by the salesman 
+  whose ID is 505 and below or those orders which purchase amount is 1000.00 and below 
+  
+select * from Orders where ord_date!='2012-09-10'AND salesman_id='505' AND Purch_amt='1000.0';
+
+......................................................................................................................................................
+......................................................................................................................................................
+
+13) Write a SQL query to display all orders where purchase amount less than 200 or exclude those orders which order date is on or 
+  greater than 10th Feb, 2012 and customer id is below 3009
+
+select * from Orders where Purch_amt<200 OR Ord_date>='10-02-2012'AND Customer_id='3009';
+
+......................................................................................................................................................
+......................................................................................................................................................
+
+14) Write a sql query to display the year and subject that won 'Dennis Gabor' his prize,select year,subject from Nobel_Win where winner='Dennis Gabor';
+......................................................................................................................................................
+......................................................................................................................................................
+
+15) Write a sql query to give the name of the Physics' winners since the year 1950,
+
+select winner from Nobel_Win where year<=1950 AND subject='Physics';
+
+......................................................................................................................................................
+......................................................................................................................................................
+
+16) Write a Sol query to Show all the details (year, subject, winner, country) of the Chemistry
+prize winners between the year 1965 to 1975 inclusive,
+
+select year,subject,winner,country  from Nobel_win where subject='Chemistry' AND year between '1965' and '1975';
+
+......................................................................................................................................................
+......................................................................................................................................................
+
+17) Write a sol query to show all the details of the winners with first name Louis
+
+select * from Nobel_Win where winner like 'Louis%';
+
+......................................................................................................................................................
+......................................................................................................................................................
+
+18) Write a sol query to show all the winners of nobel prize in the year 1970 except the subject Physiology and Economics.
+
+select * from Nobel_win where year='1970' AND subject NOT in ('Physiology','Economics');
+
+......................................................................................................................................................
+......................................................................................................................................................
+
+19)Write a sol statement to display all customers, who are either belongs to the city New York or had a grade above 100
+
+select * from Customers where city='New York' AND grade>100;
+
+......................................................................................................................................................
+......................................................................................................................................................
+
+20) Write a SQL statement to find those salesmen with all information who come from the city either Paris or Rome.
+
+select * from salesman where city='paris' OR city= 'rome';
+
+......................................................................................................................................................
+......................................................................................................................................................
+
+
+21)write a query to filter those salesmen with all information who comes from any of the cities Paris and Rome. 
+
+select * from salesman where city NOT IN('paris','rome');
+......................................................................................................................................................
+......................................................................................................................................................
+
+22) Write a SQL statement to find those salesmen with all information who gets the commission
+within a range of 0.12 and 0.14. 
+
+select * from salesman where commission between 0.12 AND 0.14;
+
+......................................................................................................................................................
+......................................................................................................................................................
+
+23)Write a SQL statement to find those salesmen with all other information and name started with
+any letter within 'A' and 'K
+
+select * from salesman where name LIKE 'A%' AND name LIKE 'K%';
+
+......................................................................................................................................................
+......................................................................................................................................................
+
+24) Write a SQL statement to find those salesmen with all information whose name containing the
+1st character is 'N' and the 4th character is 'l' and rest may be any character
+
+select * from salesman where name LIKE 'N___I%';
+
+......................................................................................................................................................
+......................................................................................................................................................
+
+25) Write a query to sort out those customers with all information whose ID value is within any
+of 3007, 3008 and 3009.
+
+select * from Customers where customer_id in ('3007','3008','3009');
+
+......................................................................................................................................................
+......................................................................................................................................................
+
+26) Write a SQL statement to find that customer with all information who does not get any
+grade except NULL
+
+select * from customers where grade is  NULL;
+
+......................................................................................................................................................
+......................................................................................................................................................
+
+27) Write a query to find those customers with their name and those salesmen with their name and city who lives in the same city 
+
+select name Salesman_name ,cust_name Customers_name from Salesman s,Customers c where s.salesman_id=c.salesman_id AND s.city=c.city;
+
+......................................................................................................................................................
+......................................................................................................................................................
+
+28) Write a SQL statement to find the names of all customers along with the salesmen who works for them 
+
+select name Salesman_name ,cust_name Customers_name from Salesman s,Customers c where s.salesman_id=c.salesman_id;
+
+......................................................................................................................................................
+......................................................................................................................................................
+
+29) Write a SQL statement that finds out each order number followed by the name of the
+customers who made the order. 
+
+select ord_no ,cust_name customer_name from Orders o,customers c where c.customer_id=o.customer_id;
+
+......................................................................................................................................................
+......................................................................................................................................................
+
+30) Write a SQL statement that sorts out the customer and their grade who made an order. Each of the customers must have a grade and served by at least a salesman, who belongs to a city 
+
+select  cust_name,grade from customers c,orders o, salesman s where c.customer_id=o.customer_id 
+AND s.salesman_id=c.salesman_id AND grade is NOT NULL AND s.city=c.city;
+
+......................................................................................................................................................
+......................................................................................................................................................
+
+31) Write a query that produces all customers with their name, city, salesman and commission, who served by a salesman and the salesman works
+ at a rate of the commission within 12% to 14% 
+
+select cust_name customers_name,c.city city,name salesman_name,commission from salesman s,customers c 
+where s.salesman_id=c.salesman_id AND commission between 0.12 AND 0.14;
+
+......................................................................................................................................................
+......................................................................................................................................................
+
+32) Write a SQL statement that produces all orders with the order number, customer name,
+ commission rate and earned commission amount for those customers who carry their grade is 200 or more and served by an existing salesman
+
+select ord_no,cust_name,commission,purch_amt/commission earned_commission from salesman s,customers c,orders o where s.salesman_id=c.salesman_id
+AND s.salesman_id=o.salesman_id AND grade>=200;
+
+......................................................................................................................................................
+......................................................................................................................................................
+
+33) Write a query to display all the orders from the orders table issued by the salesman 'Paul Adam 
+
+select ord_no from orders where salesman_id=(select salesman_id from salesman where name='paul Adam');
+
+......................................................................................................................................................
+......................................................................................................................................................
+
+34) Write a query to display all the orders for the salesman who belongs to the city London
+
+select ord_no,(order table columns) from orders where salesman_id =(select salesman_id from salesman where city='london');
+
+......................................................................................................................................................
+......................................................................................................................................................
+
+35) Write a query to find all the orders issued against the salesman who may works for customer whose id is 3007
+
+select ord_no,(order table columns) from orders where salesman_id !=(select salesman_id from customers where customer_id='3007');
+select ord_no,purch_amt,ord_date,o.customer_id from Orders o,customers c where  c.salesman_id!=(select salesman_id from customers c where customer_id='3007');
+
+......................................................................................................................................................
+......................................................................................................................................................
+
+36) Write a query to display the commission of all the salesmen servicing customers in Paris Write a query to display the commission of all the salesmen servicing customers in Paris
+
+select commission,name salesman from salesman s,customers c where c.salesman_id=(select c.salesman_id from customers where city='paris');
+
+......................................................................................................................................................
+......................................................................................................................................................
+
+
+
